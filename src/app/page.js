@@ -1,5 +1,5 @@
 import HeroSection from "../components/HeroSection";
-import WorkoutCard from "../components/WorkOutCard";
+import WorkoutCard from "../components/WorkOutCards";
 
 
 

@@ -1,6 +1,5 @@
-
 import HeroSection from "../../components/HeroSection";
-import WorkoutCard from "../../components/WorkOutCard";
+import WorkoutLibrary from "../../components/WorkoutLibrary";
 
 const FITLOG_API_URL = "https://api.abcz.workers.dev/api/fitlog";
 
@@ -10,9 +9,7 @@ const getFitLog = async () => {
   });
 
   if (!response.ok) {
-    throw new Error(
-      `Failed to fetch FitLog data: ${response.status}`
-    );
+    throw new Error(`Failed to fetch FitLog data: ${response.status}`);
   }
 
   return response.json();
@@ -55,17 +52,13 @@ const WorkOutPage = async () => {
 
               {/* Heading */}
               <h1 className="text-4xl font-black uppercase leading-tight tracking-tight sm:text-5xl md:text-6xl">
-                The{" "}
-                <span className="text-[#C2F800]">
-                  Library
-                </span>
+                The <span className="text-[#C2F800]">Library</span>
                 <span className="text-[#C2F800]">.</span>
               </h1>
 
               <p className="mt-5 max-w-xl text-sm leading-7 text-gray-400 sm:text-base">
-                Twelve lifts covering every major muscle
-                group. Explore the exercises, build strength,
-                and train with intent.
+                Twelve lifts covering every major muscle group. Explore the
+                exercises, build strength, and train with intent.
               </p>
             </div>
 
@@ -81,9 +74,7 @@ const WorkOutPage = async () => {
                     {String(workouts.length).padStart(2, "0")}
                   </span>
 
-                  <span className="text-sm text-gray-500">
-                    Workouts
-                  </span>
+                  <span className="text-sm text-gray-500">Workouts</span>
                 </div>
               </div>
 
@@ -115,43 +106,8 @@ const WorkOutPage = async () => {
               </span>
             </div>
           </div>
-
-          {/* Workout Cards */}
-          {workouts.length > 0 ? (
-            <div className="grid grid-cols-1 items-stretch gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:gap-7">
-              {workouts.map((workout) => (
-                <WorkoutCard
-                  key={workout.id}
-                  workout={workout}
-                />
-              ))}
-            </div>
-          ) : (
-            <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-16 text-center sm:py-20">
-              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-[#C2F800]/10 text-[#C2F800]">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  className="h-8 w-8"
-                  aria-hidden="true"
-                >
-                  <path d="M6 5v14M18 5v14M3 9v6M21 9v6M6 12h12" />
-                </svg>
-              </div>
-
-              <h2 className="mt-5 text-xl font-bold">
-                No Workouts Found
-              </h2>
-
-              <p className="mt-2 text-sm text-gray-400">
-                No exercises are available right now.
-                Please try again later.
-              </p>
-            </div>
-          )}
-
+          {/* Sorting + Workout Cards */}
+          <WorkoutLibrary key={workouts.id} workouts={workouts} />
         </div>
       </section>
     </main>
